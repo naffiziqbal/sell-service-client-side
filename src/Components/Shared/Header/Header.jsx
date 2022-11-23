@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../../UserContext/UserContext";
 
 const Header = () => {
-  const user = {
-    uid: 3,
-    displayName: "Nafiz Iqbal",
+  // const {user, logOut, } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut().then(() => {
+      Swal.fire({
+        position: "top-middle",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
   };
   const menuItems = {
     childMenu: (
@@ -35,7 +47,7 @@ const Header = () => {
     privateMenu: (
       <>
         <li>
-          <Link>Logout</Link>
+          <Link onClick={handleLogOut}>Logout</Link>
         </li>
         <li>
           <Link to="/dashboard">Dashboard</Link>
@@ -43,6 +55,7 @@ const Header = () => {
       </>
     ),
   };
+
   return (
     <div classname="">
       <div className="navbar bg-base-100 shadow-lg">
@@ -130,7 +143,7 @@ const Header = () => {
           </div>
         </div>
         <div className="navbar-end">
-          {user && (
+          {user?.uid && (
             <div>
               <p className="font-bold">{user?.displayName}</p>
             </div>
