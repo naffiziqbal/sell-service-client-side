@@ -120,7 +120,7 @@ const Header = () => {
               </li>
               <li tabIndex={0}>
                 <Link>
-                  Parent
+                 Products
                   <svg
                     className="fill-current"
                     xmlns="http://www.w3.org/2000/svg"
@@ -144,8 +144,9 @@ const Header = () => {
         </div>
         <div className="navbar-end">
           {user?.uid && (
-            <div>
+            <div className="flex items-center">
               <p className="font-bold">{user?.displayName}</p>
+              <img className="w-12 h-12 rounded-full mx-4" src={user?.photoURL} alt="" />
             </div>
           )}
         </div>

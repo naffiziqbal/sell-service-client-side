@@ -7,6 +7,7 @@ import {
   signOut,
   signInWithRedirect,
   onAuthStateChanged,
+  updateProfile,
 } from "firebase/auth";
 import app from "../firebase.init";
 
@@ -16,7 +17,6 @@ const provider = new GoogleAuthProvider();
 
 const UserContext = ({ children }) => {
   const [user, setUser] = useState([]);
-  console.log(user);
   
 
   //Create User Using Email and Password
@@ -38,6 +38,9 @@ const UserContext = ({ children }) => {
   const googleLogin = () => {
     return signInWithRedirect(auth, provider);
   };
+  const updateUser = (profile)=>{
+    return updateProfile(auth.currentUser, profile)
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -45,7 +48,7 @@ const UserContext = ({ children }) => {
     });
     return () => unsubscribe();
   }, []);
-  const authinfo = { user, createUser, logIn, logOut, googleLogin };
+  const authinfo = { user, createUser, logIn, logOut, googleLogin,updateUser };
   return (
       <AuthContext.Provider value={authinfo}>
         {children}
