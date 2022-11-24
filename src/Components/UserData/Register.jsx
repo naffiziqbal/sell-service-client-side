@@ -3,11 +3,14 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useToken from "../../Hooks/useToken";
 import { AuthContext } from "../../UserContext/UserContext";
 
 const Register = () => {
   const { createUser, googleLogin, updateUser } = useContext(AuthContext);
   const [radioData, setRadioData] = useState("buyer");
+  const [createadUserEmail, setCreatedUserEmail] = useState("");
+  const token = useToken(createadUserEmail);
   const {
     handleSubmit,
     register,
@@ -63,6 +66,7 @@ const Register = () => {
         }
       });
   };
+
   const saveUserToDb = (data, imgData) => {
     const info = {
       displayName: data.name,
@@ -79,10 +83,21 @@ const Register = () => {
       body: JSON.stringify(info),
     })
       .then((res) => res.json())
-      .then((data) => {});
-      console.log(info);
+      .then((data) => {
+        getToken(data.email);
+      });
+    console.log(info);
   };
-
+  const getToken = (email) => {
+    fetch(`http://localhost:5000/jwt?email=${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+          navigate("/");
+        }
+      });
+  };
   const handleGoogleLogIn = () => {
     googleLogin().then((result) => {
       const user = result.user;
@@ -161,7 +176,7 @@ const Register = () => {
                     type="radio"
                     name="radio"
                     value={"seller"}
-                    {...register('role')}
+                    {...register("role")}
                     className="radio checked:bg-red-500"
                     // checked={radioData === "seller"}
                     onChange={onOptChange}
@@ -175,8 +190,7 @@ const Register = () => {
                     type="radio"
                     name="radio"
                     value={"buyer"}
-                    {...register('role')}
-
+                    {...register("role")}
                     className="radio checked:bg-blue-500"
                     // checked={radioData === "buyer"}
                     onChange={onOptChange}

@@ -24,7 +24,7 @@ const Header = () => {
       <>
         <ul className="p-2 bg-base-200">
           <li>
-            <Link to={``} >Sports</Link>
+            <Link to={``}>Sports</Link>
           </li>
           <li>
             <Link>Cafe</Link>
@@ -119,7 +119,7 @@ const Header = () => {
               <li>
                 <Link>Home</Link>
               </li>
-              <li tabIndex={0} className = ' bg-base-100 z-50'>
+              <li tabIndex={0} className=" bg-base-100 z-50">
                 <Link>
                   Products
                   <svg
@@ -145,6 +145,26 @@ const Header = () => {
           </div>
         </div>
         <div className="navbar-end">
+            <label
+              htmlFor="dashDrawer"
+              tabIndex={0}
+              className="btn btn-ghost lg:hidden"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </label>
           {user?.uid && (
             <div className="flex items-center">
               <p className="font-bold">{user?.displayName}</p>
