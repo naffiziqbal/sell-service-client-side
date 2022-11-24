@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,14 +13,14 @@ const Register = () => {
     register,
     formState: { errors },
   } = useForm();
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const imgHostKey = `c4fb97e7290fa8d31a86af5335890d26`;
 
   const handleReg = (data) => {
+    console.log(data);
     createUser(data.email, data.password).then((result) => {
       const user = result.user;
       handleUserInfo(data);
-      handleUpdateUser(data.name, data.photoURL);
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -27,7 +28,7 @@ const Register = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate('/')
+      navigate("/");
     });
   };
 
@@ -35,10 +36,10 @@ const Register = () => {
     setRadioData(e.target.value);
   };
 
-  const handleUpdateUser = (displayName, photoURL) => {
+  const handleUpdateUser = (data, imgData) => {
     const profile = {
-      displayName,
-      photoURL,
+      displayName: data.name,
+      photoURL : imgData.data.url
     };
     updateUser(profile)
       .then(() => {})
@@ -59,6 +60,7 @@ const Register = () => {
       .then((imgData) => {
         if (imgData.success) {
           saveUserToDb(data, imgData);
+          handleUpdateUser(data, imgData);
         }
       });
   };
