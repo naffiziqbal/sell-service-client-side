@@ -1,6 +1,7 @@
 import Products from "../Components/Products/Products";
 import Login from "../Components/UserData/Login";
 import Register from "../Components/UserData/Register";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Error } = require("../Components/Shared/Error/Error");
@@ -21,11 +22,14 @@ export const router = createBrowserRouter([{
         },
         {
             path: '/register',
-            element: <Register/>
+            element: <Register />
         },
         {
             path: '/products/:category',
-            element: <Products />,
+            element:
+                <PrivateRoute>
+                    <Products />
+                </PrivateRoute>,
             loader: ({ params }) => fetch(`http://localhost:5000/product/${params.category}`)
         }
     ]
