@@ -6,8 +6,7 @@ import { AuthContext } from "../../../UserContext/UserContext";
 const Header = () => {
   // const {user, logOut, } = useContext(AuthContext);
   const { user, logOut } = useContext(AuthContext);
-console.log(user);
-
+  console.log(user);
 
   const handleLogOut = () => {
     logOut().then(() => {
@@ -122,7 +121,7 @@ console.log(user);
               </li>
               <li tabIndex={0}>
                 <Link>
-                 Products
+                  Products
                   <svg
                     className="fill-current"
                     xmlns="http://www.w3.org/2000/svg"
@@ -141,6 +140,7 @@ console.log(user);
               <li>
                 <Link>Blog</Link>
               </li>
+              {user?.uid ? menuItems.privateMenu : menuItems.publicMenu}
             </ul>
           </div>
         </div>
@@ -148,7 +148,11 @@ console.log(user);
           {user?.uid && (
             <div className="flex items-center">
               <p className="font-bold">{user?.displayName}</p>
-              <img className="w-12 h-12 rounded-full mx-4" src={user?.photoURL} alt="" />
+              <img
+                className="w-12 h-12 rounded-full mx-4"
+                src={user?.photoURL}
+                alt=""
+              />
             </div>
           )}
         </div>

@@ -16,8 +16,7 @@ const Register = () => {
   const navigate = useNavigate();
   const imgHostKey = `c4fb97e7290fa8d31a86af5335890d26`;
 
-  const handleReg = (data) => {
-    console.log(data);
+  const handleReg = (data, radioData) => {
     createUser(data.email, data.password).then((result) => {
       const user = result.user;
       handleUserInfo(data);
@@ -39,7 +38,7 @@ const Register = () => {
   const handleUpdateUser = (data, imgData) => {
     const profile = {
       displayName: data.name,
-      photoURL : imgData.data.url
+      photoURL: imgData.data.url,
     };
     updateUser(profile)
       .then(() => {})
@@ -81,6 +80,7 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {});
+      console.log(info);
   };
 
   const handleGoogleLogIn = () => {
@@ -88,6 +88,8 @@ const Register = () => {
       const user = result.user;
     });
   };
+  console.log(radioData);
+
   return (
     <div>
       <div>
@@ -154,26 +156,29 @@ const Register = () => {
               </p>
               <div className="form-control">
                 <label className="label cursor-pointer">
-                  <span className="label-text">Buyer</span>
+                  <span className="label-text">Seller</span>
                   <input
                     type="radio"
                     name="radio"
                     value={"seller"}
+                    {...register('role')}
                     className="radio checked:bg-red-500"
-                    checked={radioData === "seller"}
+                    // checked={radioData === "seller"}
                     onChange={onOptChange}
                   />
                 </label>
               </div>
               <div className="form-control">
                 <label className="label cursor-pointer">
-                  <span className="label-text">Seller</span>
+                  <span className="label-text">Buyer</span>
                   <input
                     type="radio"
                     name="radio"
                     value={"buyer"}
+                    {...register('role')}
+
                     className="radio checked:bg-blue-500"
-                    checked={radioData === "buyer"}
+                    // checked={radioData === "buyer"}
                     onChange={onOptChange}
                   />
                 </label>

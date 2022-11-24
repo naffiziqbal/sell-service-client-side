@@ -4,11 +4,8 @@ import Category from "./Category";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
-  axios.get(`http://localhost:5000/categories`).then((res) => {
-    const catData = res.data;
-    setCategories(catData);
-  });
-  // console.log(categories);
+
+
 
   return (
     <div>
