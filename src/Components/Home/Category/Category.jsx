@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Category = ({ category }) => {
-    const {title, decription, img,_id} = category
-    // console.log(_id);
+  const { name, title, decription, img, _id } = category;
+
+  // const newCat = category.category
+
+  console.log(category.category);
   // console.log(category);
   return (
     <div>
@@ -19,9 +22,9 @@ const Category = ({ category }) => {
           <p>{decription}</p>
           <div className="card-actions justify-end">
             <div className="badge badge-outline">
-            <Link to={`/products/category/${_id}`}>
-            See Category
-            </Link>
+              <Link to={`/products/${category.category}`}>
+                See Category
+              </Link>
             </div>
           </div>
         </div>

@@ -1,11 +1,15 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Category from "./Category";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
 
-
+useEffect(()=>{
+  fetch (`http://localhost:5000/allcategories`)
+  .then(res=> res.json())
+  .then(data => setCategories(data))
+},[])
 
   return (
     <div>

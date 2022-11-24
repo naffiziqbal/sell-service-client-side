@@ -22,15 +22,15 @@ const Header = () => {
   const menuItems = {
     childMenu: (
       <>
-        <ul className="p-2">
+        <ul className="p-2 bg-base-200">
           <li>
-            <Link>Sports</Link>
+            <Link to={``} >Sports</Link>
           </li>
           <li>
-            <Link>Classic</Link>
+            <Link>Cafe</Link>
           </li>
           <li>
-            <Link>Vintage</Link>
+            <Link>Standard</Link>
           </li>
         </ul>
       </>
@@ -87,7 +87,7 @@ const Header = () => {
                   <Link>Home</Link>
                 </li>
                 <li tabIndex={0}>
-                  <Link className="justify-between">
+                  <Link className="justify-between ">
                     Products
                     <svg
                       className="fill-current"
@@ -119,7 +119,7 @@ const Header = () => {
               <li>
                 <Link>Home</Link>
               </li>
-              <li tabIndex={0}>
+              <li tabIndex={0} className = ' bg-base-100 z-50'>
                 <Link>
                   Products
                   <svg
