@@ -1,6 +1,7 @@
 import Adminroutes from "../Components/Dashboard/Adminroutes/Adminroutes";
 import Allusers from "../Components/Dashboard/Adminroutes/Allusers";
 import Dashboard from "../Components/Dashboard/Dashboard";
+import Sellers from "../Components/Dashboard/Sellers/Sellers";
 import Products from "../Components/Products/Products";
 import Login from "../Components/UserData/Login";
 import Register from "../Components/UserData/Register";
@@ -63,7 +64,15 @@ export const router = createBrowserRouter(
                             <Allusers />
                         </Adminroutes>
 
-                    }
+                    },
+                    {
+                        path: '/dashboard/admin/sellers',
+                        element:
+                         <Adminroutes>
+                            <Sellers />
+                        </Adminroutes>
+
+                    },
                 ]
         }
 

@@ -20,7 +20,10 @@ const DashboardLayOut = () => {
               <Link to = 'admin/users'>All User</Link>
             </li>
             <li>
-              <a>Sidebar Item 2</a>
+              <Link to='admin/sellers'>All Sellers</Link>
+            </li>
+            <li>
+              <Link to='admin/reported'>Reported Items</Link>
             </li>
           </ul>
         </div>
