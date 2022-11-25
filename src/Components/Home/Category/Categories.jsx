@@ -12,7 +12,7 @@ useEffect(()=>{
 },[])
 
   return (
-    <div>
+    <div className="my-20">
       <p className="text-3xl">All Categories</p>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5">
         {categories.map((category) => (

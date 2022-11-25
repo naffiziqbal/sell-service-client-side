@@ -13,6 +13,7 @@ import MyProducts from "../Components/Dashboard/Sellers/MyProducts";
 import AddAProduct from "../Components/Dashboard/Sellers/AddAProduct";
 import MyBuyers from "../Components/Dashboard/Sellers/MyBuyers";
 import Allbuyers from "../Components/Dashboard/Admin/Allbuyers";
+import Sports from "../Components/Sports/Sports";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Error } = require("../Components/Shared/Error/Error");
@@ -38,6 +39,10 @@ export const router = createBrowserRouter(
                 {
                     path: '/register',
                     element: <Register />
+                },
+                {
+                    path: '/sports',
+                    element: <Sports />
                 },
                 {
                     path: '/products/:category',

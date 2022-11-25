@@ -19,21 +19,21 @@ const Header = () => {
     });
   };
   const menuItems = {
-    childMenu: (
-      <>
-        <ul className="p-2 bg-base-200">
-          <li>
-            <Link to={``}>Sports</Link>
-          </li>
-          <li>
-            <Link>Cafe</Link>
-          </li>
-          <li>
-            <Link>Standard</Link>
-          </li>
-        </ul>
-      </>
-    ),
+    // childMenu: (
+    //   <>
+    //     <ul className="p-2 bg-base-200">
+    //       <li>
+    //         <Link to={`/sports`}>Sports</Link>
+    //       </li>
+    //       <li>
+    //         <Link>Cafe</Link>
+    //       </li>
+    //       <li>
+    //         <Link>Standard</Link>
+    //       </li>
+    //     </ul>
+    //   </>
+    // ),
     publicMenu: (
       <>
         <li>
