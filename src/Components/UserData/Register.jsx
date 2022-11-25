@@ -86,9 +86,10 @@ const Register = () => {
     const info = {
       displayName: data.name,
       email: data.email,
-      role: !data.role ?"buyer" : data.role ,
+      role: !data.role ? "buyer" : data.role,
       photoURL: imgData.data.url,
     };
+    console.log(info);
 
     fetch(`http://localhost:5000/users`, {
       method: "POST",

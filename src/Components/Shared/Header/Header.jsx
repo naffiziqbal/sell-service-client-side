@@ -83,7 +83,7 @@ const Header = () => {
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <Link>Home</Link>
+                  <Link to='/'>Home</Link>
                 </li>
                 <li tabIndex={0}>
                   <Link className="justify-between ">
@@ -116,7 +116,7 @@ const Header = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal p-0">
               <li>
-                <Link>Home</Link>
+                <Link to= '/'>Home</Link>
               </li>
               <li tabIndex={0} className=" bg-base-100 z-50">
                 <Link>
