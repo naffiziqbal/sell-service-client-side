@@ -17,7 +17,7 @@ const DashboardLayOut = () => {
   return (
     <div>
       <Header />
-      <div className="drawer">
+      <div className="drawer container mx-auto">
         <input id="dashDrawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           <Outlet />

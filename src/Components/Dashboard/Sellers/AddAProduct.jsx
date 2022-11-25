@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../UserContext/UserContext";
 
@@ -6,6 +7,7 @@ const AddAProduct = () => {
   const { user } = useContext(AuthContext);
   const imageHostKey = process.env.REACT_APP_IMGBB_API_KEY;
   console.log(imageHostKey);
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     // const image =
     e.preventDefault();
@@ -70,6 +72,7 @@ const AddAProduct = () => {
                   timer: 1500,
                 });
                 form.reset();
+                navigate('/dashboard/sellers/myproducts')
               }
             });
         }
