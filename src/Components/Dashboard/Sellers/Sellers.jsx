@@ -1,20 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useLoaderData } from "react-router-dom";
 
 const Sellers = () => {
+  // const sellers = useLoaderData()
   const {
     data: sellers = [],
     refetch,
     isLoading,
   } = useQuery({
     queryKey: ["data"],
-    queryFn: () => fetch(`http://localhost:5000/sellers/`)
+    queryFn: () => fetch(`http://localhost:5000/allsellers/seller`)
     .then(res=>res.json())
   });
 
   const handleDelete =(id)=>{
 
   }
+  console.log(sellers);
+  
   return (
     <div>
       All Sellers Goes Here

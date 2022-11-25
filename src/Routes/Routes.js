@@ -60,17 +60,17 @@ export const router = createBrowserRouter(
                     {
                         path: '/dashboard/admin/users',
                         element:
-                         <Adminroutes>
-                            <Allusers />
-                        </Adminroutes>
+                            <Adminroutes>
+                                <Allusers />
+                            </Adminroutes>
 
                     },
                     {
-                        path: '/dashboard/admin/sellers',
+                        path: '/dashboard/admin/:sellers',
                         element:
-                         <Adminroutes>
-                            <Sellers />
-                        </Adminroutes>
+                            <Adminroutes>
+                                <Sellers />
+                            </Adminroutes>
 
                     },
                 ]

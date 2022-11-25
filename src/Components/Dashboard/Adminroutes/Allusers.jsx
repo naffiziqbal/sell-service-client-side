@@ -9,7 +9,6 @@ const Allusers = () => {
       fetch(`http://localhost:5000/users`).then((res) => res.json()),
   });
   //   console.log(users);
-
   const handleAdmin = (id) => {
     fetch(`http://localhost:5000/admin/users/${id}`, {
       method: "PUT",
