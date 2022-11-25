@@ -1,12 +1,14 @@
-import Adminroutes from "../Components/Dashboard/Adminroutes/Adminroutes";
-import Allusers from "../Components/Dashboard/Adminroutes/Allusers";
+import Adminroutes from "./Adminroutes/Adminroutes";
+import Allusers from "../Components/Dashboard/Users/Allusers";
 import Dashboard from "../Components/Dashboard/Dashboard";
 import Sellers from "../Components/Dashboard/Sellers/Sellers";
+import MyOrders from "../Components/Dashboard/Users/MyOrders";
 import Products from "../Components/Products/Products";
 import Login from "../Components/UserData/Login";
 import Register from "../Components/UserData/Register";
 import DashboardLayOut from "../Layout/DashboardLayOut";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import SellerRoutes from "./SellerRoutes/SellerRoutes";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Error } = require("../Components/Shared/Error/Error");
@@ -66,11 +68,19 @@ export const router = createBrowserRouter(
 
                     },
                     {
-                        path: '/dashboard/admin/:sellers',
+                        path: '/dashboard/admin/sellers',
                         element:
                             <Adminroutes>
                                 <Sellers />
                             </Adminroutes>
+
+                    },
+                    {
+                        path: '/dashboard/users/myorders',
+                        element:
+                            <SellerRoutes>
+                                <MyOrders />
+                            </SellerRoutes>
 
                     },
                 ]

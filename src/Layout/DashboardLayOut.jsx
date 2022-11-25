@@ -6,9 +6,14 @@ import useSeller from "../Hooks/useSeller";
 import { AuthContext } from "../UserContext/UserContext";
 
 const DashboardLayOut = () => {
-  const {user}=  useContext(AuthContext)
+  const { user } = useContext(AuthContext);
+  const {email} = user;
+  console.log(user.email);
+  
+  const [isSeller] = useSeller(email)
   const [isAdmin] = useAdmin(user?.email);
-  const [isSeller] = useSeller(user?.email)
+  console.log(user
+    );
   return (
     <div>
       <Header />
@@ -35,9 +40,20 @@ const DashboardLayOut = () => {
                 </li>
               </>
             )}
-            {
-              isSeller && <Link >HEllo</Link>
-            }
+            {isSeller && (
+              <>
+                <li>
+                  <Link to="sellers/myproducts">My Products</Link>
+                </li>
+                <li>
+                  <Link to="sellers/addproducts">Add A Products</Link>
+                </li>
+                <li>
+                  <Link to="users/mybuyers">My Buyers</Link>
+                </li>
+              </>
+            )}
+
           </ul>
         </div>
       </div>

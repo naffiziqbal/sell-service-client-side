@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../UserContext/UserContext";
 
 const Login = () => {
   const { googleLogin, logIn } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -13,14 +14,20 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const handleLogIn =(data) =>{
+  const handleLogIn = (data) => {
     logIn(data.email, data.password)
-    .then(result => {
+      .then((result) => {
         const user = result.user;
-        navigate('/')
-    })
-    .catch(err => console.log(err))
-  }
+        navigate("/");
+      })
+      .catch((err) =>
+        Swal.fire({
+          icon: "error",
+          title: {err},
+          text: err.message,
+        })
+      );
+  };
 
   const handleGoogleLogIn = () => {
     googleLogin()
@@ -28,7 +35,13 @@ const Login = () => {
         const user = result.user;
         navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>
+        Swal.fire({
+          icon: "error",
+          title: err,
+          text: err.message,
+        })
+      );
   };
   return (
     <div>

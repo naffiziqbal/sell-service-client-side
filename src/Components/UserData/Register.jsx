@@ -20,18 +20,26 @@ const Register = () => {
   const imgHostKey = `c4fb97e7290fa8d31a86af5335890d26`;
 
   const handleReg = (data, radioData) => {
-    createUser(data.email, data.password).then((result) => {
-      const user = result.user;
-      handleUserInfo(data);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Your work has been saved",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      navigate("/");
-    });
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        handleUserInfo(data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch((err) =>
+        Swal.fire({
+          icon: "error",
+          title: { err },
+          text: err.message,
+        })
+      );
   };
 
   const onOptChange = (e) => {
@@ -64,7 +72,14 @@ const Register = () => {
           saveUserToDb(data, imgData);
           handleUpdateUser(data, imgData);
         }
-      });
+      })
+      .catch((err) =>
+        Swal.fire({
+          icon: "error",
+          title: { err },
+          text: err.message,
+        })
+      );
   };
 
   const saveUserToDb = (data, imgData) => {
