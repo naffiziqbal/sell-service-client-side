@@ -1,15 +1,21 @@
 import React, { useContext } from "react";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../../UserContext/UserContext";
 
 const AddAProduct = () => {
   const { user } = useContext(AuthContext);
-
+  const imageHostKey = process.env.REACT_APP_IMGBB_API_KEY;
+  console.log(imageHostKey);
   const handleSubmit = (e) => {
-    // const image = 
+    // const image =
     e.preventDefault();
-    console.log(e.target.image.files[0]);
-    
     const form = e.target;
+
+    // console.log(e.target.image.files[0]);
+    const image = e.target.image.files[0];
+    const imgData = new FormData();
+    imgData.append("image", image);
+
     const sellerName = form.sellerName.value;
     const email = form.email.value;
     const contactNumber = form.contactNumber.value;
@@ -20,27 +26,56 @@ const AddAProduct = () => {
     const location = form.location.value;
     const used = form.used.value;
     const category = form.category.value;
-    const img = form.image.files[0];
+    const date = new Date();
 
-    const productData = {
-        sellerName,
-        email,
-        contactNumber,
-        name,
-        productCondition,
-        originalPrice,
-        location,
-        resalePrice,
-        used,
-        category,
-        img
-    }
-    console.log(productData);
-    //Upload Image To Db  And sava Procucts To Database
-    
-
-    // const ;
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+    fetch(url, {
+      method: "POST",
+      body: imgData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data.data.url);
+        if (data.success) {
+          const productData = {
+            sellerName,
+            email,
+            contactNumber,
+            name,
+            productCondition,
+            originalPrice,
+            location,
+            resalePrice,
+            used,
+            category,
+            img: data.data.url,
+            datePosted: date,
+          };
+          fetch("http://localhost:5000/categories", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(productData),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              console.log(result);
+              if (result.acknowledged) {
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Your work has been saved",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                form.reset();
+              }
+            });
+        }
+      });
   };
+
   return (
     <div>
       <p className="text-3xl font-bold "> What's You're Sellin'</p>
@@ -64,7 +99,7 @@ const AddAProduct = () => {
                       name="sellerName"
                       placeholder="Suzuki Gixxer SF Naked"
                       className="input w-full  input-bordered"
-                      required
+                      //   required
                     />
                   </label>
                 </div>
@@ -79,7 +114,7 @@ const AddAProduct = () => {
                       name="contactNumber"
                       placeholder="0188 90482"
                       className="input  w-full input-bordered"
-                      required
+                      //   required
                     />
                   </label>
                 </div>
@@ -96,7 +131,7 @@ const AddAProduct = () => {
                       name="email"
                       placeholder="Suzuki Gixxer SF Naked"
                       className="input w-full  input-bordered"
-                      required
+                      //   required
                     />
                   </label>
                 </div>
@@ -111,7 +146,7 @@ const AddAProduct = () => {
                       placeholder="Suzuki Gixxer SF Naked"
                       name="name"
                       className="input w-full  input-bordered"
-                      required
+                      //   required
                     />
                   </label>
                 </div>
@@ -126,7 +161,7 @@ const AddAProduct = () => {
                       name="productCondition"
                       placeholder="Execellent"
                       className="input w-full  input-bordered"
-                      required
+                      //   required
                     />
                   </label>
                 </div>
@@ -141,7 +176,7 @@ const AddAProduct = () => {
                       placeholder="2 00 000"
                       name="originalPrice"
                       className="input w-full  input-bordered"
-                      required
+                      //   required
                     />
                   </label>
                 </div>
@@ -156,7 +191,7 @@ const AddAProduct = () => {
                       placeholder="2 00 000"
                       name="resalePrice"
                       className="input w-full  input-bordered"
-                      required
+                      //   required
                     />
                   </label>
                 </div>
@@ -171,7 +206,7 @@ const AddAProduct = () => {
                       placeholder="eg: Dhaka/ Chittagong"
                       name="location"
                       className="input w-full  input-bordered"
-                      required
+                      //   required
                     />
                   </label>
                 </div>
@@ -186,7 +221,7 @@ const AddAProduct = () => {
                       placeholder="Sport"
                       name="used"
                       className="input w-full  input-bordered"
-                      required
+                      //   required
                     />
                   </label>
                 </div>
@@ -201,7 +236,7 @@ const AddAProduct = () => {
                       placeholder="Sport"
                       name="category"
                       className="input w-full  input-bordered"
-                      required
+                      //   required
                     />
                   </label>
                 </div>
@@ -217,7 +252,7 @@ const AddAProduct = () => {
                     name="image"
                     className="input w-full 
                     h-44 input-bordered"
-                    required
+                    // required
                   />
                 </label>
               </div>
