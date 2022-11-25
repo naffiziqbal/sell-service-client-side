@@ -9,6 +9,9 @@ import Register from "../Components/UserData/Register";
 import DashboardLayOut from "../Layout/DashboardLayOut";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import SellerRoutes from "./SellerRoutes/SellerRoutes";
+import MyProducts from "../Components/Dashboard/Sellers/MyProducts";
+import AddAProduct from "../Components/Dashboard/Sellers/AddAProduct";
+import MyBuyers from "../Components/Dashboard/Sellers/MyBuyers";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Error } = require("../Components/Shared/Error/Error");
@@ -80,6 +83,38 @@ export const router = createBrowserRouter(
                         element:
                             <SellerRoutes>
                                 <MyOrders />
+                            </SellerRoutes>
+
+                    },
+                    {
+                        path: '/dashboard/users/myorders',
+                        element:
+                            <SellerRoutes>
+                                <MyProducts />
+                            </SellerRoutes>
+
+                    },
+                    {
+                    path: '/dashboard/sellers/myproducts',
+                        element:
+                            <SellerRoutes>
+                                <MyProducts />
+                            </SellerRoutes>
+
+                    },
+                    {
+                        path: '/dashboard/sellers/addproducts',
+                        element:
+                            <SellerRoutes>
+                                <AddAProduct />
+                            </SellerRoutes>
+
+                    },
+                    {
+                        path: '/dashboard/users/mybuyers',
+                        element:
+                            <SellerRoutes>
+                                <MyBuyers />
                             </SellerRoutes>
 
                     },

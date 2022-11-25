@@ -53,6 +53,13 @@ const DashboardLayOut = () => {
                 </li>
               </>
             )}
+            {
+              !isSeller && !isAdmin && <>
+              <li>
+                <Link to ='users/myorders'>My Orders</Link>
+              </li>
+              </>
+            }
 
           </ul>
         </div>
