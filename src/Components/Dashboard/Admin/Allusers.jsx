@@ -29,7 +29,7 @@ const Allusers = () => {
       });
   };
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/admin/users/${id}`, {
+    fetch(`http://localhost:5000/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -89,7 +89,7 @@ const Allusers = () => {
                       Desktop Support Technician
                     </span>
                   </td>
-                  <td>{user?.role ? user.role : "buyer"}</td>
+                  <td>{user?.role}</td>
                   <th>
                     <button
                       className="btn btn-ghost btn-xs"
@@ -108,6 +108,7 @@ const Allusers = () => {
               ))}
             </tbody>
           </table>
+          {users.length < 1 && <div className="text-4xl text-red-400 ">No Buyers Available..... </div>}
         </div>
       </div>
     </div>

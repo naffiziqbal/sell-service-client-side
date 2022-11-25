@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Sellers = () => {
   // const sellers = useLoaderData()
@@ -11,12 +12,28 @@ const Sellers = () => {
   } = useQuery({
     queryKey: ["data"],
     queryFn: () =>
-      fetch(`http://localhost:5000/allsellers/seller`).then((res) =>
-        res.json()
-      ),
+      fetch(`http://localhost:5000/users/seller`).then((res) => res.json()),
   });
 
-  const handleDelete = (id) => {};
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/users/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          refetch();
+        }
+        console.log(data);
+      });
+  };
 
   return (
     <div>
@@ -72,6 +89,11 @@ const Sellers = () => {
               ))}
             </tbody>
           </table>
+          {sellers.length < 1 && (
+            <div className="text-4xl text-red-400 ">
+              No Buyers Available.....{" "}
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -12,6 +12,7 @@ import SellerRoutes from "./SellerRoutes/SellerRoutes";
 import MyProducts from "../Components/Dashboard/Sellers/MyProducts";
 import AddAProduct from "../Components/Dashboard/Sellers/AddAProduct";
 import MyBuyers from "../Components/Dashboard/Sellers/MyBuyers";
+import Allbuyers from "../Components/Dashboard/Admin/Allbuyers";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Error } = require("../Components/Shared/Error/Error");
@@ -79,17 +80,17 @@ export const router = createBrowserRouter(
 
                     },
                     {
-                        path: '/dashboard/admin/sellers',
+                        path: '/dashboard/admin/buyers',
                         element:
                             <Adminroutes>
-                                <Sellers />
+                                <Allbuyers />
                             </Adminroutes>
 
                     },
                     {
                         path: '/dashboard/users/myorders',
                         element:
-                                <MyOrders />
+                            <MyOrders />
                     },
                     {
                         path: '/dashboard/users/myorders',
@@ -100,7 +101,7 @@ export const router = createBrowserRouter(
 
                     },
                     {
-                    path: '/dashboard/sellers/myproducts',
+                        path: '/dashboard/sellers/myproducts',
                         element:
                             <SellerRoutes>
                                 <MyProducts />
