@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 
-const useAdmin = email => {
+const useSeller = email => {
     const [isSeller, setIsSeller] = useState(false);
     const [isSellerLoading, setIsSellerLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/admin/users/${email}`)
+            fetch(`http://localhost:5000/sellers/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
@@ -14,7 +14,7 @@ const useAdmin = email => {
                 })
         }
     }, [email])
-    return [setIsSeller, setIsSellerLoading]
+    return [isSeller, setIsSellerLoading]
 }
 
-export default useAdmin;
+export default useSeller;

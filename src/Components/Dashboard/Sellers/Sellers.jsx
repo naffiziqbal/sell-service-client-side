@@ -10,15 +10,14 @@ const Sellers = () => {
     isLoading,
   } = useQuery({
     queryKey: ["data"],
-    queryFn: () => fetch(`http://localhost:5000/allsellers/seller`)
-    .then(res=>res.json())
+    queryFn: () =>
+      fetch(`http://localhost:5000/allsellers/seller`).then((res) =>
+        res.json()
+      ),
   });
 
-  const handleDelete =(id)=>{
+  const handleDelete = (id) => {};
 
-  }
-  console.log(sellers);
-  
   return (
     <div>
       All Sellers Goes Here
@@ -43,7 +42,7 @@ const Sellers = () => {
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
                           <img
-                            src={user?.img}
+                            src={user?.photoURL}
                             alt="Avatar Tailwind CSS Component"
                           />
                         </div>
