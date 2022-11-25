@@ -85,9 +85,6 @@ const Allusers = () => {
                   <td>
                     {user?.email ? user.email : "No Data Avaiable"}
                     <br />
-                    <span className="badge badge-ghost badge-sm">
-                      Desktop Support Technician
-                    </span>
                   </td>
                   <td>{user?.role}</td>
                   <th>
