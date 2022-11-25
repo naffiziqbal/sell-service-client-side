@@ -1,5 +1,5 @@
 import Adminroutes from "./Adminroutes/Adminroutes";
-import Allusers from "../Components/Dashboard/Users/Allusers";
+import Allusers from "../Components/Dashboard/Admin/Allusers";
 import Dashboard from "../Components/Dashboard/Dashboard";
 import Sellers from "../Components/Dashboard/Sellers/Sellers";
 import MyOrders from "../Components/Dashboard/Users/MyOrders";
@@ -79,12 +79,17 @@ export const router = createBrowserRouter(
 
                     },
                     {
+                        path: '/dashboard/admin/sellers',
+                        element:
+                            <Adminroutes>
+                                <Sellers />
+                            </Adminroutes>
+
+                    },
+                    {
                         path: '/dashboard/users/myorders',
                         element:
-                            <SellerRoutes>
                                 <MyOrders />
-                            </SellerRoutes>
-
                     },
                     {
                         path: '/dashboard/users/myorders',

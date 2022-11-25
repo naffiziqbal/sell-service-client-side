@@ -86,7 +86,7 @@ const Register = () => {
     const info = {
       displayName: data.name,
       email: data.email,
-      role: data.role,
+      role: !data.role ?"buyer" : data.role ,
       photoURL: imgData.data.url,
     };
 
@@ -193,7 +193,7 @@ const Register = () => {
                     value={"seller"}
                     {...register("role")}
                     className="radio checked:bg-red-500"
-                    // checked={radioData === "seller"}
+                    checked={radioData === "seller"}
                     onChange={onOptChange}
                   />
                 </label>
@@ -205,9 +205,8 @@ const Register = () => {
                     type="radio"
                     name="radio"
                     value={"buyer"}
-                    {...register("role")}
                     className="radio checked:bg-blue-500"
-                    // checked={radioData === "buyer"}
+                    checked={radioData === "buyer"}
                     onChange={onOptChange}
                   />
                 </label>
