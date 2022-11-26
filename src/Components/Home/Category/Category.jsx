@@ -6,7 +6,7 @@ const Category = ({ category }) => {
 
   // const newCat = category.category
 
-  console.log(category);
+  // console.log(category);
   // console.log(category);
   return (
     <div>

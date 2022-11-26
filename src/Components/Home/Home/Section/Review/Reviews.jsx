@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import userEvent from "@testing-library/user-event";
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../../../UserContext/UserContext";
 import Review from "./Review";
 
 const Reviews = () => {
+  const [reviews, setReviews] = useState([]);
   const [ratings, setRatings] = useState("");
   const { user } = useContext(AuthContext);
 
@@ -48,18 +50,17 @@ const Reviews = () => {
         }
       });
   };
-  const { data: reviews = [] } = useQuery({
-    queryKey: ["reviews"],
-    queryFn: () =>
-      fetch("http://localhost:5000/review").then((res) => res.json()),
-  });
+  useEffect(() => {
+    axios.get(`http://localhost:5000/review`).then((res) => setReviews(res.data));
+  }, [reviews]);
+
   return (
     <div className="shadow-primary shadow-xl py-5 my-14 rounded ">
       <h3 className="text-3xl font-semibold text-center my-8">
         What's Our Client Saying
       </h3>
       <div className="overflow-y-hidden">
-        <div className="flex gap-3 w-[1600px]">
+        <div className="flex gap-3 w-[160000000px]">
           {reviews.map((review) => (
             <Review key={review._id} review={review} />
           ))}
