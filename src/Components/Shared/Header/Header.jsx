@@ -103,7 +103,7 @@ const Header = () => {
                   }
                 </li>
                 <li>
-                  <Link>Blog</Link>
+                  <Link to ='/blog'>Blog</Link>
                 </li>
                 {user?.uid ? menuItems.privateMenu : menuItems.publicMenu}
               </ul>
@@ -136,7 +136,7 @@ const Header = () => {
                 }
               </li>
               <li>
-                <Link>Blog</Link>
+                <Link to='/blog'>Blog</Link>
               </li>
               {user?.uid ? menuItems.privateMenu : menuItems.publicMenu}
             </ul>

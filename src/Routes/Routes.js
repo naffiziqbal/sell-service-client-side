@@ -14,6 +14,8 @@ import AddAProduct from "../Components/Dashboard/Sellers/AddAProduct";
 import MyBuyers from "../Components/Dashboard/Sellers/MyBuyers";
 import Allbuyers from "../Components/Dashboard/Admin/Allbuyers";
 import Sports from "../Components/Sports/Sports";
+import Blog from "../Components/Blogs/Blog";
+import AddBlog from "../Components/Blogs/AddBlog";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Error } = require("../Components/Shared/Error/Error");
@@ -43,6 +45,14 @@ export const router = createBrowserRouter(
                 {
                     path: '/sports',
                     element: <Sports />
+                },
+                {
+                    path: '/blog',
+                    element: <Blog />
+                },
+                {
+                    path: '/addblog',
+                    element: <AddBlog />
                 },
                 {
                     path: '/products/:category',
