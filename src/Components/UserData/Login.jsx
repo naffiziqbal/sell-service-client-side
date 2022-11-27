@@ -18,30 +18,64 @@ const Login = () => {
     logIn(data.email, data.password)
       .then((result) => {
         const user = result.user;
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        console.log(user);
+
         navigate("/");
       })
       .catch((err) =>
         Swal.fire({
           icon: "error",
-          title: {err},
+          title: { err },
           text: err.message,
         })
       );
   };
 
   const handleGoogleLogIn = () => {
-    googleLogin()
-      .then((result) => {
-        const user = result.user;
-        navigate("/");
+    googleLogin().then((result) => {
+      const user = result.user;
+      console.log(user);
+      const info = {
+        displayName: user.displayName,
+        email: user.displayName,
+        photoURL: user.photoURL,
+      };
+      fetch(`http://localhost:5000/users`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(info),
       })
-      .catch((err) =>
-        Swal.fire({
-          icon: "error",
-          title: err,
-          text: err.message,
-        })
-      );
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+          // getToken(data.email);
+        });
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
+    });
   };
   return (
     <div>

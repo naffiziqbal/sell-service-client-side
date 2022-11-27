@@ -89,7 +89,7 @@ const Register = () => {
       role: !data.role ? "buyer" : data.role,
       photoURL: imgData.data.url,
     };
-    console.log(info);
+    // console.log(info);
 
     fetch(`http://localhost:5000/users`, {
       method: "POST",
@@ -100,6 +100,15 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.acknowledged) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
         getToken(data.email);
       });
     console.log(info);
@@ -117,9 +126,42 @@ const Register = () => {
   const handleGoogleLogIn = () => {
     googleLogin().then((result) => {
       const user = result.user;
+      console.log(user);
+      const info = {
+        displayName: user.displayName,
+        email: user.displayName,
+        photoURL: user.photoURL,
+      };
+      fetch(`http://localhost:5000/users`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(info),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+          getToken(data.email);
+        });
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
     });
   };
-  console.log(radioData);
 
   return (
     <div>
