@@ -5,8 +5,10 @@ import Swal from "sweetalert2";
 import useVarified from "../../../Hooks/useVarified";
 import { AuthContext } from "../../../UserContext/UserContext";
 import { CheckBadgeIcon } from "@heroicons/react/24/solid";
+import useTitle from "../../../Hooks/useTitle";
 
 const Sellers = () => {
+  useTitle('All Sellers')
   // const sellers = useLoaderData()
   const { user } = useContext(AuthContext);
   const [isVarified, setIsVarificationLoading] = useVarified(user?.email);
@@ -17,11 +19,11 @@ const Sellers = () => {
   } = useQuery({
     queryKey: ["data"],
     queryFn: () =>
-      fetch(`http://localhost:5000/users/seller`).then((res) => res.json()),
+      fetch(`https://second-sell.vercel.app/users/seller`).then((res) => res.json()),
   });
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://second-sell.vercel.app/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -36,11 +38,10 @@ const Sellers = () => {
           });
           refetch();
         }
-        console.log(data);
       });
   };
   const handleVarification = (id) => {
-    fetch(`http://localhost:5000/admin/sellers/${id}`, {
+    fetch(`https://second-sell.vercel.app/admin/sellers/${id}`, {
       method: "PUT",
       //JWT Header Goes Here;
     })

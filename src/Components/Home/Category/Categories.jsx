@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Category from "./Category";
 
@@ -6,7 +5,7 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
 
 useEffect(()=>{
-  fetch (`http://localhost:5000/allcategories`)
+  fetch (`https://second-sell.vercel.app/allcategories`)
   .then(res=> res.json())
   .then(data => setCategories(data))
 },[])

@@ -5,10 +5,9 @@ import Sport from "./Sport";
 const Sports = () => {
     const {data : sports =[]} = useQuery({
         queryKey : ['sports'],
-        queryFn : ()=> fetch(`http://localhost:5000/product/Cafe%20Racer`)
+        queryFn : ()=> fetch(`https://second-sell.vercel.app/product/Cafe%20Racer`)
         .then(res => res.json())
     })
-    console.log(sports);
   return (
     <div>
       <p> All Sports Category Data Here</p>

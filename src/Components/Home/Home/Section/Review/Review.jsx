@@ -3,8 +3,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 
 const Review = ({ review }) => {
   const { reviewName, reviewerImg, message, ratings } = review;
-  console.log(review);
-  console.log(ratings);
+
   return (
     <div className="  card w-96 bg-base-100 shadow-xl">
       <div className="card-body">

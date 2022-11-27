@@ -1,17 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
+import useTitle from "../../Hooks/useTitle";
 import BlogContent from "./BlogContent";
 
 const Blog = () => {
+  useTitle('Blog')
   const { data: blogs = [], refetch } = useQuery({
     queryKey: ["blogs"],
     queryFn: () =>
-      fetch(`http://localhost:5000/blog`).then((res) => res.json()),
+      fetch(`https://second-sell.vercel.app/blog`).then((res) => res.json()),
 
     // .then(data => )
   });
-  console.log(blogs);
   return (
     <div>
       <h3 className="font-semibold text-4xl underline my-5 hover:text-blue-700 duration-300">

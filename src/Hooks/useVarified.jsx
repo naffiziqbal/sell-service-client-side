@@ -5,10 +5,9 @@ const useVarified = (email) => {
   const [isVarificationLoading, setIsVarificationLoading] = useState(true);
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/admin/sellers/${email}`)
+      fetch(`https://second-sell.vercel.app/admin/sellers/${email}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setIsVarified(data.isVarified);
           setIsVarificationLoading(false);
         });

@@ -6,14 +6,12 @@ import { AuthContext } from "../../../UserContext/UserContext";
 const AddAProduct = () => {
   const { user } = useContext(AuthContext);
   const imageHostKey = process.env.REACT_APP_IMGBB_API_KEY;
-  console.log(imageHostKey);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     // const image =
     e.preventDefault();
     const form = e.target;
 
-    // console.log(e.target.image.files[0]);
     const image = e.target.image.files[0];
     const imgData = new FormData();
     imgData.append("image", image);
@@ -30,7 +28,6 @@ const AddAProduct = () => {
     // const category = form.category.value;
     const date = new Date();
     const category = form.option.value;
-    console.log(category);
 
     const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
     fetch(url, {
@@ -39,7 +36,6 @@ const AddAProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data.data.url);
         if (data.success) {
           const productData = {
             sellerName,
@@ -55,7 +51,7 @@ const AddAProduct = () => {
             img: data.data.url,
             datePosted: date,
           };
-          fetch("http://localhost:5000/categories", {
+          fetch("https://second-sell.vercel.app/categories", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -64,7 +60,6 @@ const AddAProduct = () => {
           })
             .then((res) => res.json())
             .then((result) => {
-              console.log(result);
               if (result.acknowledged) {
                 Swal.fire({
                   position: "top-end",

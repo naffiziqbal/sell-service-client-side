@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useTitle from "../../Hooks/useTitle";
 import { AuthContext } from "../../UserContext/UserContext";
 
 const Login = () => {
+  useTitle('Log in')
   const { googleLogin, logIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -25,7 +27,6 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        console.log(user);
 
         navigate("/");
       })
@@ -41,13 +42,12 @@ const Login = () => {
   const handleGoogleLogIn = () => {
     googleLogin().then((result) => {
       const user = result.user;
-      console.log(user);
       const info = {
         displayName: user.displayName,
         email: user.displayName,
         photoURL: user.photoURL,
       };
-      fetch(`http://localhost:5000/users`, {
+      fetch(`https://second-sell.vercel.app/users`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

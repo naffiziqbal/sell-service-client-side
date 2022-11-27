@@ -3,7 +3,6 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../UserContext/UserContext";
 
 const BookingModal = ({ product, booking, setBooking }) => {
-  console.log(product);
   const { user } = useContext(AuthContext);
   const { email, displayName } = user;
   const {
@@ -48,7 +47,7 @@ const BookingModal = ({ product, booking, setBooking }) => {
       productId: _id,
     };
 
-    fetch(`http://localhost:5000/bookings`, {
+    fetch(`https://second-sell.vercel.app/bookings`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -78,7 +77,6 @@ const BookingModal = ({ product, booking, setBooking }) => {
                   `,
           });
         }
-        console.log(data);
       })
       .catch((err) => {
         Swal.fire({

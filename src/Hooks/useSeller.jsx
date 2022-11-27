@@ -5,10 +5,9 @@ const useSeller = email => {
     const [isSellerLoading, setIsSellerLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/sellers/${email}`)
+            fetch(`https://second-sell.vercel.app/sellers/${email}`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                     setIsSeller(data.isSeller);
                     setIsSellerLoading(false);
                 })

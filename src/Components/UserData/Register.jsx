@@ -3,10 +3,12 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useTitle from "../../Hooks/useTitle";
 import useToken from "../../Hooks/useToken";
 import { AuthContext } from "../../UserContext/UserContext";
 
 const Register = () => {
+  useTitle("Registration");
   const { createUser, googleLogin, updateUser } = useContext(AuthContext);
   const [radioData, setRadioData] = useState("buyer");
   const [createadUserEmail, setCreatedUserEmail] = useState("");
@@ -53,7 +55,13 @@ const Register = () => {
     };
     updateUser(profile)
       .then(() => {})
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: { err },
+          text: err.message,
+        });
+      });
   };
   const handleUserInfo = (data) => {
     const image = data.image[0];
@@ -89,9 +97,8 @@ const Register = () => {
       role: !data.role ? "buyer" : data.role,
       photoURL: imgData.data.url,
     };
-    // console.log(info);
 
-    fetch(`http://localhost:5000/users`, {
+    fetch(`https://second-sell.vercel.app/users`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -111,10 +118,9 @@ const Register = () => {
         }
         getToken(data.email);
       });
-    console.log(info);
   };
   const getToken = (email) => {
-    fetch(`http://localhost:5000/jwt?email=${email}`)
+    fetch(`https://second-sell.vercel.app/jwt?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.accessToken) {
@@ -126,13 +132,12 @@ const Register = () => {
   const handleGoogleLogIn = () => {
     googleLogin().then((result) => {
       const user = result.user;
-      console.log(user);
       const info = {
         displayName: user.displayName,
         email: user.displayName,
         photoURL: user.photoURL,
       };
-      fetch(`http://localhost:5000/users`, {
+      fetch(`https://second-sell.vercel.app/users`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

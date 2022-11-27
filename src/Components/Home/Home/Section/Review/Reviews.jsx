@@ -30,7 +30,7 @@ const Reviews = () => {
       reviewerImg,
       ratings,
     };
-    fetch(`http://localhost:5000/review`, {
+    fetch(`https://second-sell.vercel.app/review`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -39,7 +39,6 @@ const Reviews = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           Swal.fire({
             position: "top-end",
@@ -53,7 +52,7 @@ const Reviews = () => {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/review`)
+      .get(`https://second-sell.vercel.app/review`)
       .then((res) => setReviews(res.data));
   }, [reviews]);
 

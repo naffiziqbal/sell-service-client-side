@@ -8,12 +8,10 @@ import { AuthContext } from "../UserContext/UserContext";
 const DashboardLayOut = () => {
   const { user } = useContext(AuthContext);
   const {email} = user;
-  console.log(user.email);
   
   const [isSeller] = useSeller(email)
   const [isAdmin] = useAdmin(user?.email);
-  console.log(user
-    );
+
   return (
     <div>
       <Header />

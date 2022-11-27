@@ -2,18 +2,19 @@ import { CheckBadgeIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import useAdmin from "../../Hooks/useAdmin";
+import useTitle from "../../Hooks/useTitle";
 import useVarified from "../../Hooks/useVarified";
 import { AuthContext } from "../../UserContext/UserContext";
 
 const Dashboard = () => {
+  useTitle('Dashboard')
   const { data: users = [] } = useQuery({
     queryKey: ["user"],
     queryFn: () =>
-      fetch(`http://localhost:5000/user/${user.email}`).then((res) =>
+      fetch(`https://second-sell.vercel.app/user/${user.email}`).then((res) =>
         res.json()
       ),
   });
-  console.log(users);
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user.email);
   const [isVarified] = useVarified(user.email);

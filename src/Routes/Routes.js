@@ -61,7 +61,7 @@ export const router = createBrowserRouter(
                         <PrivateRoute>
                             <Products />
                         </PrivateRoute>,
-                    loader: ({ params }) => fetch(`http://localhost:5000/product/${params.category}`)
+                    loader: ({ params }) => fetch(`https://second-sell.vercel.app/product/${params.category}`)
                 }
             ]
         },

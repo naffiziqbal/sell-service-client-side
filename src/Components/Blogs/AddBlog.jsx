@@ -10,7 +10,6 @@ const AddBlog = () => {
   const { user, loading } = useContext(AuthContext);
   const [isAdmin, isAdminLoading] = useAdmin(user?.email);
   const imgHostKey = process.env.REACT_APP_IMGBB_API_KEY;
-  console.log(imgHostKey);
   const {
     register,
     handleSubmit,
@@ -31,14 +30,13 @@ const AddBlog = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         const blog = {
           headline,
           textBody,
           img: data.data.url,
         };
 
-        fetch(`http://localhost:5000/blog`, {
+        fetch(`https://second-sell.vercel.app/blog`, {
           method: "POST",
           headers: {
             "content-type": "application/json",

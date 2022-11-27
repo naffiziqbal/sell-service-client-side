@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import Swal from "sweetalert2";
+import useTitle from "../../../Hooks/useTitle";
 import { AuthContext } from "../../../UserContext/UserContext";
 import Loading from "../../Loading/Loading";
 
 const Allusers = () => {
+  useTitle('All Users')
   const { loading } = useContext(AuthContext);
   const {
     data: users = [],
@@ -13,11 +15,10 @@ const Allusers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`http://localhost:5000/users`).then((res) => res.json()),
+      fetch(`https://second-sell.vercel.app/users`).then((res) => res.json()),
   });
-  //   console.log(users);
   const handleAdmin = (id) => {
-    fetch(`http://localhost:5000/admin/users/${id}`, {
+    fetch(`https://second-sell.vercel.app/admin/users/${id}`, {
       method: "PUT",
       //JWT Header Goes Here;
     })
@@ -36,7 +37,7 @@ const Allusers = () => {
       });
   };
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://second-sell.vercel.app/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -51,7 +52,6 @@ const Allusers = () => {
           });
           refetch();
         }
-        console.log(data);
       });
   };
 

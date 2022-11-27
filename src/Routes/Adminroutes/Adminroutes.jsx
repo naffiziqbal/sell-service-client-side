@@ -7,7 +7,6 @@ import { AuthContext } from "../../UserContext/UserContext";
 const Adminroutes = ({ children }) => {
   const { user, loading, setLoading } = useContext(AuthContext);
   const [isAdmin, isAdminLoading] = useAdmin(user?.email);
-  console.log(isAdmin);
   const location = useLocation();
 
   if (loading || isAdminLoading) {

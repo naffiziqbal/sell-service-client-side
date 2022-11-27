@@ -6,10 +6,8 @@ import { AuthContext } from "../../UserContext/UserContext";
 
 const SellerRoutes = ({ children }) => {
 const { user, loading } = useContext(AuthContext);
-console.log(user, 'seller user');
 
   const [isSeller, isSellerLoading] = useSeller(user?.email)
-  console.log(isSeller);
   const location = useLocation();
 
   if (loading || isSellerLoading) {

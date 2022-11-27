@@ -4,10 +4,8 @@ import useVarified from "../../Hooks/useVarified";
 import BookingModal from "../Modal/BookingModal";
 
 const Product = ({ product }) => {
-  // console.log(product);
   const [booking, setBooking] = useState(null);
   const [isVarified] = useVarified(product.email);
-  console.log(isVarified);
 
   const {
     category,
@@ -22,6 +20,7 @@ const Product = ({ product }) => {
     datePosted,
     productCondition,
   } = product;
+
   return (
     <div>
       <div className="card  bg-base-100 shadow-xl flex md:flex-row flex-cols">

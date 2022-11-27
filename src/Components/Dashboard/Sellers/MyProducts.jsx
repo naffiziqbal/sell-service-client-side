@@ -7,11 +7,10 @@ const MyProducts = () => {
   const { user } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
   const productsData = products.data;
-  console.log(productsData);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/categories/${user.email}`)
+      .get(`https://second-sell.vercel.app/categories/${user.email}`)
       .then((res) => setProducts(res));
   }, [user.email]);
 

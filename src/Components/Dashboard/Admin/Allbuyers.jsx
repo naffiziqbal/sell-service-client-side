@@ -1,15 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import Swal from "sweetalert2";
+import useTitle from "../../../Hooks/useTitle";
 
 const Allbuyers = () => {
+  useTitle('All Buyers')
   const { data: buyers = [], refetch } = useQuery({
     queryKey: ["buyers"],
     queryFn: () =>
-      fetch(`http://localhost:5000/users/buyer`).then((res) => res.json()),
+      fetch(`https://second-sell.vercel.app/users/buyer`).then((res) => res.json()),
   });
   const handleAdmin = (id) => {
-    fetch(`http://localhost:5000/admin/users/${id}`, {
+    fetch(`https://second-sell.vercel.app/admin/users/${id}`, {
       method: "PUT",
       //JWT Header Goes Here;
     })
@@ -28,7 +30,7 @@ const Allbuyers = () => {
       });
   };
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://second-sell.vercel.app/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -43,7 +45,6 @@ const Allbuyers = () => {
           });
           refetch();
         }
-        console.log(data);
       });
   };
   return (
