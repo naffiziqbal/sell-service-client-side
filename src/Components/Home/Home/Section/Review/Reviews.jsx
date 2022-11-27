@@ -63,11 +63,16 @@ const Reviews = () => {
         What's Our Client Saying
       </h3>
       <div className="overflow-y-hidden">
-        <div className="flex gap-3 w-[10000px]">
-          {reviews.map((review) => (
-            <Review key={review._id} review={review} />
-          ))}
-        </div>
+        {reviews.length  && (
+          <div className="flex gap-3 w-[10000px]">
+            {reviews.map((review) => (
+              <Review key={review._id} review={review} />
+            ))}
+          </div>
+        )}
+        {
+          reviews.length === 0 && <p className="text-center"> No Review Available Please Add One</p>
+        }
       </div>
 
       <div className="flex flex-col justify-center items-center">
@@ -87,9 +92,9 @@ const Reviews = () => {
                   type="radio"
                   name="rating-2"
                   className="mask mask-star-2 bg-orange-400"
-                  checked
                   onChange={rating}
                   value={"two"}
+                  // checked = {setRatings()}
                 />
                 <input
                   type="radio"
@@ -127,7 +132,13 @@ const Reviews = () => {
             </label>
           </form>
         ) : (
-          <div className="font-bold  ">Please <Link to = '/login' className="underline text-blue-600">Log In</Link> To Give A Review </div>
+          <div className="font-bold  ">
+            Please{" "}
+            <Link to="/login" className="underline text-blue-600">
+              Log In
+            </Link>{" "}
+            To Give A Review{" "}
+          </div>
         )}
       </div>
     </div>

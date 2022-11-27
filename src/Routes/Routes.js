@@ -16,6 +16,7 @@ import Allbuyers from "../Components/Dashboard/Admin/Allbuyers";
 import Sports from "../Components/Sports/Sports";
 import Blog from "../Components/Blogs/Blog";
 import AddBlog from "../Components/Blogs/AddBlog";
+import ReportedItems from "../Components/Dashboard/Admin/ReportedItems";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Error } = require("../Components/Shared/Error/Error");
@@ -100,6 +101,14 @@ export const router = createBrowserRouter(
                         element:
                             <Adminroutes>
                                 <Allbuyers />
+                            </Adminroutes>
+
+                    },
+                    {
+                        path: '/dashboard/admin/reported',
+                        element:
+                            <Adminroutes>
+                                <ReportedItems />
                             </Adminroutes>
 
                     },

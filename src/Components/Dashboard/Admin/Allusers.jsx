@@ -1,11 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../../UserContext/UserContext";
 import Loading from "../../Loading/Loading";
 
 const Allusers = () => {
-  const { data: users = [], refetch, isLoading } = useQuery({
-    queryKey: ["user"],
+  const { loading } = useContext(AuthContext);
+  const {
+    data: users = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["users"],
     queryFn: () =>
       fetch(`http://localhost:5000/users`).then((res) => res.json()),
   });
@@ -25,7 +31,7 @@ const Allusers = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          refetch()
+          refetch();
         }
       });
   };
@@ -48,9 +54,9 @@ const Allusers = () => {
         console.log(data);
       });
   };
-  
-  if(isLoading){
-    return <Loading/>
+
+  if (isLoading || loading) {
+    return <Loading />;
   }
 
   return (
@@ -93,12 +99,14 @@ const Allusers = () => {
                   </td>
                   <td>{user?.role}</td>
                   <th>
-                    <button
-                      className="btn btn-ghost btn-xs"
-                      onClick={() => handleAdmin(user._id)}
-                    >
-                      Make Admin
-                    </button>
+                    { user?.role !== "admin" && (
+                      <button
+                        className="btn btn-ghost btn-xs"
+                        onClick={() => handleAdmin(user._id)}
+                      >
+                        Make Admin
+                      </button>
+                    )}
                     <button
                       className="btn btn-ghost btn-xs"
                       onClick={() => handleDelete(user._id)}
@@ -110,7 +118,11 @@ const Allusers = () => {
               ))}
             </tbody>
           </table>
-          {users.length < 1 && <div className="text-4xl text-red-400 ">No Buyers Available..... </div>}
+          {users?.length < 1 && (
+            <div className="text-4xl text-red-400 ">
+              No Users Available.....{" "}
+            </div>
+          )}
         </div>
       </div>
     </div>
