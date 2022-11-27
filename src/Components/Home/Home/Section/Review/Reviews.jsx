@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import userEvent from "@testing-library/user-event";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../../../UserContext/UserContext";
 import Review from "./Review";
@@ -51,7 +52,9 @@ const Reviews = () => {
       });
   };
   useEffect(() => {
-    axios.get(`http://localhost:5000/review`).then((res) => setReviews(res.data));
+    axios
+      .get(`http://localhost:5000/review`)
+      .then((res) => setReviews(res.data));
   }, [reviews]);
 
   return (
@@ -60,7 +63,7 @@ const Reviews = () => {
         What's Our Client Saying
       </h3>
       <div className="overflow-y-hidden">
-        <div className="flex gap-3 w-[160000000px]">
+        <div className="flex gap-3 w-[10000px]">
           {reviews.map((review) => (
             <Review key={review._id} review={review} />
           ))}
@@ -68,60 +71,64 @@ const Reviews = () => {
       </div>
 
       <div className="flex flex-col justify-center items-center">
-        <p className="text-xl">Add Your Review</p>
-        <form className="form-control" onSubmit={handleFormSubmit}>
-          <label className="label">
-            <div className="rating">
+        <p className="text-2xl font-bold my-5">Add Your Review</p>
+        {user?.uid ? (
+          <form className="form-control" onSubmit={handleFormSubmit}>
+            <label className="label">
+              <div className="rating">
+                <input
+                  type="radio"
+                  name="rating-2"
+                  value={"one"}
+                  className="mask mask-star-2 bg-orange-400"
+                  onChange={rating}
+                />
+                <input
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                  checked
+                  onChange={rating}
+                  value={"two"}
+                />
+                <input
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                  onChange={rating}
+                  value={"three"}
+                />
+                <input
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                  value={"four"}
+                  onChange={rating}
+                />
+                <input
+                  type="radio"
+                  name="rating-2"
+                  className="mask mask-star-2 bg-orange-400"
+                  value={"five"}
+                  onChange={rating}
+                />
+              </div>
+            </label>
+            <label className="input-group max-w-md">
+              <span>{user?.email}</span>
               <input
-                type="radio"
-                name="rating-2"
-                value={"one"}
-                className="mask mask-star-2 bg-orange-400"
-                onChange={rating}
+                type="text"
+                name="review"
+                required
+                placeholder="Awesome"
+                className="input input-bordered"
               />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-                checked
-                onChange={rating}
-                value={"two"}
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-                onChange={rating}
-                value={"three"}
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-                onChange={rating}
-                value={"four"}
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-                onChange={rating}
-                value={"five"}
-              />
-            </div>
-          </label>
-          <label className="input-group max-w-md">
-            <span>{user.email}</span>
-            <input
-              type="text"
-              name="review"
-              required
-              placeholder="Awesome"
-              className="input input-bordered"
-            />
-            <input type="submit" className="btn btn-primary" />
-          </label>
-        </form>
+              <input type="submit" className="btn btn-primary" />
+            </label>
+          </form>
+        ) : (
+          <div className="font-bold  ">Please <Link to = '/login' className="underline text-blue-600">Log In</Link> To Give A Review </div>
+        )}
       </div>
     </div>
   );
