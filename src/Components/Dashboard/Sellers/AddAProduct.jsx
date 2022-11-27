@@ -7,7 +7,7 @@ const AddAProduct = () => {
   const { user } = useContext(AuthContext);
   const imageHostKey = process.env.REACT_APP_IMGBB_API_KEY;
   console.log(imageHostKey);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     // const image =
     e.preventDefault();
@@ -27,8 +27,10 @@ const AddAProduct = () => {
     const resalePrice = form.resalePrice.value;
     const location = form.location.value;
     const used = form.used.value;
-    const category = form.category.value;
+    // const category = form.category.value;
     const date = new Date();
+    const category = form.option.value;
+    console.log(category);
 
     const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
     fetch(url, {
@@ -72,7 +74,7 @@ const AddAProduct = () => {
                   timer: 1500,
                 });
                 form.reset();
-                navigate('/dashboard/sellers/myproducts')
+                navigate("/dashboard/sellers/myproducts");
               }
             });
         }
@@ -233,14 +235,23 @@ const AddAProduct = () => {
                     <span className="label-text">Product Category</span>
                   </label>
                   <label className="input-group">
-                    <span>Category</span>
-                    <input
-                      type="text"
-                      placeholder="Sport"
-                      name="category"
-                      className="input w-full  input-bordered"
-                      //   required
-                    />
+                    <select
+                      className="select select-primary w-full max-w-xs"
+                      required name="option"
+                    >
+                      <option disabled>
+                        Select A Category For Your Product
+                      </option>
+                      <option value="Cafe Racer" >
+                        Cafe Racer
+                      </option>
+                      <option value="Standard" >
+                        Standard
+                      </option>
+                      <option value="Sport Bike" >
+                        Sport Bike
+                      </option>
+                    </select>
                   </label>
                 </div>
               </div>

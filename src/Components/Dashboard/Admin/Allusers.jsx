@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import Swal from "sweetalert2";
+import Loading from "../../Loading/Loading";
 
 const Allusers = () => {
-  const { data: users = [], refetch } = useQuery({
+  const { data: users = [], refetch, isLoading } = useQuery({
     queryKey: ["user"],
     queryFn: () =>
       fetch(`http://localhost:5000/users`).then((res) => res.json()),
@@ -47,6 +48,10 @@ const Allusers = () => {
         console.log(data);
       });
   };
+  
+  if(isLoading){
+    return <Loading/>
+  }
 
   return (
     <div>
