@@ -104,7 +104,7 @@ const AddAProduct = () => {
                       name="sellerName"
                       placeholder="Suzuki Gixxer SF Naked"
                       className="input w-full  input-bordered"
-                      //   required
+                        required
                     />
                   </label>
                 </div>
@@ -119,7 +119,7 @@ const AddAProduct = () => {
                       name="contactNumber"
                       placeholder="0188 90482"
                       className="input  w-full input-bordered"
-                      //   required
+                        required
                     />
                   </label>
                 </div>
@@ -136,7 +136,7 @@ const AddAProduct = () => {
                       name="email"
                       placeholder="Suzuki Gixxer SF Naked"
                       className="input w-full  input-bordered"
-                      //   required
+                        required
                     />
                   </label>
                 </div>
@@ -151,7 +151,7 @@ const AddAProduct = () => {
                       placeholder="Suzuki Gixxer SF Naked"
                       name="name"
                       className="input w-full  input-bordered"
-                      //   required
+                        required
                     />
                   </label>
                 </div>
@@ -166,7 +166,7 @@ const AddAProduct = () => {
                       name="productCondition"
                       placeholder="Execellent"
                       className="input w-full  input-bordered"
-                      //   required
+                        required
                     />
                   </label>
                 </div>
@@ -181,7 +181,7 @@ const AddAProduct = () => {
                       placeholder="2 00 000"
                       name="originalPrice"
                       className="input w-full  input-bordered"
-                      //   required
+                        required
                     />
                   </label>
                 </div>
@@ -196,7 +196,7 @@ const AddAProduct = () => {
                       placeholder="2 00 000"
                       name="resalePrice"
                       className="input w-full  input-bordered"
-                      //   required
+                        required
                     />
                   </label>
                 </div>
@@ -211,7 +211,7 @@ const AddAProduct = () => {
                       placeholder="eg: Dhaka/ Chittagong"
                       name="location"
                       className="input w-full  input-bordered"
-                      //   required
+                        required
                     />
                   </label>
                 </div>
@@ -226,7 +226,7 @@ const AddAProduct = () => {
                       placeholder="Sport"
                       name="used"
                       className="input w-full  input-bordered"
-                      //   required
+                        required
                     />
                   </label>
                 </div>
@@ -266,7 +266,7 @@ const AddAProduct = () => {
                     name="image"
                     className="input w-full 
                     h-44 input-bordered"
-                    // required
+                    required
                   />
                 </label>
               </div>
