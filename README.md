@@ -28,3 +28,6 @@ This web site is being Hosted In Firebase Free Hosting Service You Can Check Bel
 * MongoDB : Using MongoDb as Database 
 * Imgbb : Using IMGBB as Image Hosting Platform 
 
+
+### adminEmail : abc@gmail.com
+### adminPassword : 123456
