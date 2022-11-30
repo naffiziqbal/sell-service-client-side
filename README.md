@@ -29,5 +29,5 @@ This web site is being Hosted In Firebase Free Hosting Service You Can Check Bel
 * Imgbb : Using IMGBB as Image Hosting Platform 
 
 
-### adminEmail : abc@gmail.com
+### adminEmail : admin@gmail.com
 ### adminPassword : 123456
