@@ -75,11 +75,11 @@ const Reviews = () => {
       </div>
 
       <div className="flex flex-col justify-center items-center">
-        <p className="text-2xl font-bold my-5">Add Your Review</p>
+        <p className="text-2xl font-bold my-5 p-5">Add Your Review</p>
         {user?.uid ? (
           <form className="form-control" onSubmit={handleFormSubmit}>
             <label className="label">
-              <div className="rating">
+              <div className="rating ">
                 <input
                   type="radio"
                   name="rating-2"
@@ -118,8 +118,8 @@ const Reviews = () => {
                 />
               </div>
             </label>
-            <label className="input-group max-w-md">
-              <span>{user?.email}</span>
+            <label className="input-group max-w-md w-full ">
+              {/* <span>{user?.email}</span> */}
               <input
                 type="text"
                 name="review"
