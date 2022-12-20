@@ -18,11 +18,12 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Pagination  } from "swiper";
+import Loading from "../../../../Loading/Loading";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [ratings, setRatings] = useState("");
-  const { user } = useContext(AuthContext);
+  const { user,loading } = useContext(AuthContext);
 
   const rating = (e) => {
     const ratingData = e.target.value;
@@ -68,6 +69,9 @@ const Reviews = () => {
       .then((res) => setReviews(res.data));
   }, [reviews]);
 
+  if(loading){
+    return <Loading/>
+  }
   return (
     <div className=" py-5 my-14 rounded ">
       <h3 className="text-3xl font-semibold text-center my-8">

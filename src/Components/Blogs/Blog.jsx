@@ -1,10 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import useTitle from "../../Hooks/useTitle";
+import { AuthContext } from "../../UserContext/UserContext";
+import Loading from "../Loading/Loading";
 import BlogContent from "./BlogContent";
 
 const Blog = () => {
+  const {loading} = useContext(AuthContext)
   useTitle('Blog')
   const { data: blogs = [], refetch } = useQuery({
     queryKey: ["blogs"],
@@ -13,6 +17,10 @@ const Blog = () => {
 
     // .then(data => )
   });
+
+  if(loading){
+    return <Loading/>
+  }
   return (
     <div>
       <h3 className="font-semibold text-4xl underline my-5 hover:text-blue-700 duration-300">
