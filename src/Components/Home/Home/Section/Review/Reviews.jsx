@@ -1,5 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-import userEvent from "@testing-library/user-event";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -12,18 +10,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-// import "swiper/css/navigation";
+import "swiper/css/navigation";
 
 // import "./styles.css";
 
 // import required modules
-import { Pagination  } from "swiper";
+import { Pagination,Navigation } from "swiper";
 import Loading from "../../../../Loading/Loading";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [ratings, setRatings] = useState("");
-  const { user,loading } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
   const rating = (e) => {
     const ratingData = e.target.value;
@@ -62,7 +60,7 @@ const Reviews = () => {
           });
         }
       });
-      form.reset()
+    form.reset();
   };
   useEffect(() => {
     axios
@@ -70,8 +68,8 @@ const Reviews = () => {
       .then((res) => setReviews(res.data));
   }, [reviews]);
 
-  if(loading){
-    return <Loading/>
+  if (loading) {
+    return <Loading />;
   }
   return (
     <div className=" py-5 my-14 rounded ">
@@ -83,13 +81,13 @@ const Reviews = () => {
           <>
             <Swiper
               slidesPerView={1}
-              spaceBetween={30}
+              spaceBetween={10}
               loop={true}
               pagination={{
                 clickable: true,
               }}
               navigation={true}
-              modules={[Pagination]}
+              modules={[Pagination,Navigation]}
               className="mySwiper"
             >
               <div>
