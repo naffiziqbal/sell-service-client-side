@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import  { AuthContext } from "../../../UserContext/UserContext";
+import Loading from "../../Loading/Loading";
 import Category from "./Category";
 
 const Categories = () => {
+  const {loading, user} = useContext(AuthContext)
+
   const [categories, setCategories] = useState([]);
 
 useEffect(()=>{
@@ -9,6 +14,9 @@ useEffect(()=>{
   .then(res=> res.json())
   .then(data => setCategories(data))
 },[])
+if(loading){
+  return <Loading/>
+}
 
   return (
     <div className=" container mx-auto">
