@@ -7,6 +7,18 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../../../../UserContext/UserContext";
 import Review from "./Review";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+// import "swiper/css/navigation";
+
+// import "./styles.css";
+
+// import required modules
+import { Pagination  } from "swiper";
+
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [ratings, setRatings] = useState("");
@@ -57,21 +69,37 @@ const Reviews = () => {
   }, [reviews]);
 
   return (
-    <div className="shadow-primary shadow-xl py-5 my-14 rounded ">
+    <div className=" py-5 my-14 rounded ">
       <h3 className="text-3xl font-semibold text-center my-8">
         What's Our Client Saying
       </h3>
       <div className="overflow-y-hidden">
-        {reviews.length  && (
-          <div className="flex gap-3 w-[10000px]">
-            {reviews.map((review) => (
-              <Review key={review._id} review={review} />
-            ))}
-          </div>
+        {reviews.length && (
+          <>
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={30}
+              loop={true}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={true}
+              modules={[Pagination]}
+              className="mySwiper"
+            >
+              <div>
+                {reviews.map((review) => (
+                  <SwiperSlide>
+                    <Review key={review._id} review={review} />
+                  </SwiperSlide>
+                ))}
+              </div>
+            </Swiper>
+          </>
         )}
-        {
-          reviews.length === 0 && <p className="text-center"> No Review Available Please Add One</p>
-        }
+        {reviews.length === 0 && (
+          <p className="text-center"> No Review Available Please Add One</p>
+        )}
       </div>
 
       <div className="flex flex-col justify-center items-center">
