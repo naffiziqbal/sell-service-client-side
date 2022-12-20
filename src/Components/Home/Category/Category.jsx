@@ -8,8 +8,8 @@ const Category = ({ category }) => {
 
 
   return (
-    <div>
-      <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="">
+      <div className="card w-full  bg-base-100 shadow-xl">
         <figure>
           <img src={img} alt="Bike" />
         </figure>

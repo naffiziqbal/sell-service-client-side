@@ -11,8 +11,8 @@ useEffect(()=>{
 },[])
 
   return (
-    <div className="my-20">
-      <p className="text-3xl">All Categories</p>
+    <div className=" container mx-auto">
+      <p className="text-3xl text-center my-5">All Categories</p>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5">
         {categories.map((category) => (
           <Category key={category._id} category={category} />
